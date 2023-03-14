@@ -1,9 +1,11 @@
+import IssueAPI from "./api/api";
+
 function App() {
   return (
-  <>
-  <div></div>
-  </>
-  )
+    <>
+      <IssueAPI />
+    </>
+  );
 }
 
 export default App;
