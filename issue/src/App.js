@@ -1,9 +1,11 @@
-import IssueAPI from "./api/api";
+import Header from "./components/Layout/Header/Header";
+import ListPage from "./pages/ListPage/ListPage";
 
 function App() {
   return (
     <>
-      <IssueAPI />
+      <Header />
+      <ListPage />
     </>
   );
 }

@@ -4,7 +4,9 @@ function IssueAPI() {
   const [users, setUsers] = useState();
   const getData = async () => {
     try {
-      const response = await axios.get("https://api.github.com/repos/angular/angular-cli/issues");
+      const response = await axios.get(
+        "https://api.github.com/repos/angular/angular-cli/issues"
+      );
       setUsers(response.data);
       console.log(response.data);
     } catch {
@@ -16,7 +18,11 @@ function IssueAPI() {
   }, []);
   console.log(users);
 
-  return <div>{users && users.map((user, index) => <div>{user.user.login}</div>)}</div>;
+  return (
+    <div>
+      {users && users.map((user, index) => <div>{user.user.login}</div>)}
+    </div>
+  );
 }
 
 export default IssueAPI;
