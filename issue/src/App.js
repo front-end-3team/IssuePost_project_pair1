@@ -1,11 +1,15 @@
 import Header from "./components/Layout/Header/Header";
 import ListPage from "./pages/ListPage/ListPage";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 
 function App() {
   return (
     <>
-      <Header />
-      <ListPage />
+      <Provider store={store}>
+        <Header />
+        <ListPage />
+      </Provider>
     </>
   );
 }
