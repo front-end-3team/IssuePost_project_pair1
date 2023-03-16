@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Post from "./Post";
-import PageNation2 from "./PageNation2";
+import Paging from "./Paging";
 
 function PageNation() {
   const [posts, setPosts] = useState([]);
@@ -31,7 +31,11 @@ function PageNation() {
   return (
     <>
       <Post posts={currentPosts} loading={loading} />
-      <PageNation2 postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+      <Paging
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
     </>
   );
 }
