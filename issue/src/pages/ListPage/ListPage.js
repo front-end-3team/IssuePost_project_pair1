@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { asyncIssue } from "../../issueSlice/issueSlice";
 
 function ListPage() {
-  //글자수 제한
-
   const dispatch = useDispatch();
 
   const issues = useSelector((state) => {
