@@ -1,7 +1,28 @@
 import styled from "styled-components";
 import Buttons from "../../components/Button/Buttons";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { asyncIssue } from "../../issueSlice/issueSlice";
 
 function ListPage() {
+  //글자수 제한
+
+  const dispatch = useDispatch();
+
+  const issues = useSelector((state) => {
+    return state.asyncIssue.issues;
+  });
+
+  const status = useSelector((state) => {
+    return state.asyncIssue.status;
+  });
+
+  useEffect(() => {
+    dispatch(asyncIssue());
+  }, []);
+
+  console.log(issues);
+  console.log(status);
   return (
     <Page>
       <ListHeader>
@@ -13,19 +34,21 @@ function ListPage() {
         </ListHeaderLeft>
         <Buttons />
       </ListHeader>
-      <List>
-        <ListTop>
-          <h2>ex: 아이디</h2>
-          <div>ex: 제목</div>
-          <div>ex: 댓글수</div>
-        </ListTop>
-        <ListCenter>
-          Redux Toolkit은 Redux를 더 쉽게 사용하기 위해 만들어졌습니다. 리덕스는
-          Flux 아키텍처를 기반으로 잘 설계된 라이브러리이지만 다음과 같은
-          문제점을 보였습니다.
-        </ListCenter>
-        <ListBottom>2020:02:10</ListBottom>
-      </List>
+      {status === "Loading" ? (
+        <h1>로딩중</h1>
+      ) : (
+        issues.map((el) => (
+          <List>
+            <ListTop>
+              <h2>{el.id}</h2>
+              <div>{el.title}</div>
+              <span>댓글수 : {el.comments}</span>
+            </ListTop>
+            <ListCenter>{el.body}</ListCenter>
+            <ListBottom>{el.created_at}</ListBottom>
+          </List>
+        ))
+      )}
     </Page>
   );
 }
@@ -53,7 +76,7 @@ const ListHeader_1 = styled.span`
 `;
 const ListHeader_2 = styled.span`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-left: 40px;
   font-size: 20px;
 
@@ -79,16 +102,20 @@ const ListTop = styled.div`
   margin-bottom: 20px;
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  max-width: 95%;
+  justify-content: space-between;
   & h2 {
     font-size: 20px;
     font-weight: bold;
   }
   & div {
-    font-size: 18px;
+    font-size: 23px;
+    font-weight: 600;
   }
 `;
-const ListCenter = styled.div``;
+const ListCenter = styled.div`
+  max-width: 85%;
+`;
 const ListBottom = styled.div`
   margin-top: 25px;
 `;
