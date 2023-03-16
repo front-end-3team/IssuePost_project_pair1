@@ -1,22 +1,33 @@
 import styled from "styled-components";
 import ListPage from "../ListPage/ListPage";
-
+import { Link } from "react-router-dom";
 function Post({ posts, loading }) {
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <H1>Loading...</H1>;
   }
 
   return (
     <>
       {posts.map((post) => (
         <List>
-          <ListTop>
-            <h2>{post.id}</h2>
-            <div>{post.title}</div>
-            <span>댓글수 : {post.comments}</span>
-          </ListTop>
-          <ListCenter>{post.body}</ListCenter>
-          <ListBottom>{post.created_at}</ListBottom>
+          <Link
+            to={"/Detail"}
+            style={{
+              textDecoration: "none",
+              color: "black",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <ListTop>
+              <h2>{post.id}</h2>
+              <div>{post.title}</div>
+              <span>댓글수 : {post.comments}</span>
+            </ListTop>
+            <ListCenter>{post.body}</ListCenter>
+            <ListBottom>{post.created_at}</ListBottom>
+          </Link>
         </List>
       ))}
     </>
@@ -57,4 +68,7 @@ const ListCenter = styled.div`
 `;
 const ListBottom = styled.div`
   margin-top: 25px;
+`;
+const H1 = styled.h1`
+  font-size: 100px;
 `;
