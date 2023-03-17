@@ -5,22 +5,28 @@ import Paging from "./Paging";
 import { pageNumber } from "../../App";
 
 function PageNation() {
-  const { postsPerPage, setPostsPerPage } = useContext(pageNumber);
+  const { postsPerPage, setPostsPerPage, filter, setFilter } = useContext(pageNumber);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  let arr = [];
+  for (let i = 0; i < 100; i++) {
+    arr.push({});
+  }
+  console.log(filter);
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
       const res = await axios.get(
-        "https://api.github.com/repos/angular/angular-cli/issues?per_page=100"
+        `https://api.github.com/repos/angular/angular-cli/issues?per_page=100&sort=${filter}`
       );
+      console.log(filter);
       setPosts(res.data);
       setLoading(false);
     };
     fetchPosts();
-  }, []);
+  }, [filter]);
 
   //Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
