@@ -2,10 +2,10 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import { pageNumber } from "../../App";
 function Buttons() {
-  const { setPostsPerPage, setfilter } = useContext(pageNumber);
+  const { setPostsPerPage, setFilter } = useContext(pageNumber);
 
   const recentData = (e) => {
-    setfilter(e.target.value);
+    setFilter(e.target.value);
   };
   const selectNumber = (e) => {
     setPostsPerPage(e.target.value);

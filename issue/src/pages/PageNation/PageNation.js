@@ -5,7 +5,7 @@ import Paging from "./Paging";
 import { pageNumber } from "../../App";
 
 function PageNation() {
-  const { postsPerPage, setPostsPerPage, filter, setfilter } =
+  const { postsPerPage, setPostsPerPage, filter, setFilter } =
     useContext(pageNumber);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);

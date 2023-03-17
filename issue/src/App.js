@@ -9,13 +9,13 @@ export const pageNumber = createContext();
 
 function App() {
   const [postsPerPage, setPostsPerPage] = useState(10);
-  const [filter, setfilter] = useState("");
+  const [filter, setFilter] = useState("");
 
   return (
     <>
       <Provider store={store}>
         <pageNumber.Provider
-          value={{ postsPerPage, setPostsPerPage, filter, setfilter }}
+          value={{ postsPerPage, setPostsPerPage, filter, setFilter }}
         >
           <Header />
           <ListPage />
