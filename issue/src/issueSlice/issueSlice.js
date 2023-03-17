@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const asyncIssue = createAsyncThunk("issueslice/asyncIssue", async () => {
   const response = await axios.get(
-    "https://api.github.com/repos/angular/angular-cli/issues?per_page=10"
+    "https://api.github.com/repos/angular/angular-cli/issues?per_page=100"
   );
   return response.data;
 });
