@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 function Paging({ postsPerPage, totalPosts, paginate }) {
   const pageNumbers = [];
 
@@ -11,9 +11,9 @@ function Paging({ postsPerPage, totalPosts, paginate }) {
       <Ul>
         {pageNumbers.map((number) => (
           <Li key={number}>
-            <A onClick={() => paginate(number)} href="!#">
+            <Link onClick={() => paginate(number)} to={`/page/${number}`}>
               {number}
-            </A>
+            </Link>
           </Li>
         ))}
       </Ul>

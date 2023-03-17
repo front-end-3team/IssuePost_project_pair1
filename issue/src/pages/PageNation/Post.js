@@ -1,32 +1,31 @@
 import styled from "styled-components";
-import ListPage from "../ListPage/ListPage";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Post({ posts, loading }) {
   if (loading) {
-    return <H1>Loading...</H1>;
+    return <H1>데이터 로딩 중입니다...Loading...</H1>;
   }
-
   return (
     <>
       {posts.map((post) => (
-        <List
-          to={"/Detail"}
-          style={{
-            textDecoration: "none",
-            color: "black",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <ListTop>
-            <h2>{post.id}</h2>
-            <div>{post.title}</div>
-            <span>댓글수 : {post.comments}</span>
-          </ListTop>
-          <ListCenter>{post.body}</ListCenter>
-          <ListBottom>{post.created_at}</ListBottom>
-        </List>
+        <Link to={`/Detail/${post.id}`}>
+          <List
+            style={{
+              textDecoration: "none",
+              color: "black",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <ListTop>
+              <h2>{post.id}</h2>
+              <div>{post.title}</div>
+              <span>댓글수 : {post.comments}</span>
+            </ListTop>
+            <ListCenter>{post.body}</ListCenter>
+            <ListBottom>{post.created_at}</ListBottom>
+          </List>
+        </Link>
       ))}
     </>
   );
