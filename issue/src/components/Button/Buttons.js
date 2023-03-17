@@ -1,12 +1,17 @@
+import { useContext, useState } from "react";
 import styled from "styled-components";
-
+import { pageNumber } from "../../App";
 function Buttons() {
+  const { postsPerPage, setPostsPerPage } = useContext(pageNumber);
+
   const recentData = (e) => {
     console.log(e.target.value);
   };
   const selectNumber = (e) => {
-    console.log(e.target.value);
+    setPostsPerPage(e.target.value);
   };
+  console.log(postsPerPage);
+
   return (
     <Div>
       <select onChange={recentData}>
