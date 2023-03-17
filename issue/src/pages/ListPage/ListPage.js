@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { asyncIssue } from "../../issueSlice/issueSlice";
 import PageNation from "../PageNation/PageNation";
+
 function ListPage() {
   const dispatch = useDispatch();
 
@@ -17,10 +18,9 @@ function ListPage() {
 
   useEffect(() => {
     dispatch(asyncIssue());
+    console.log(issues);
   }, []);
 
-  console.log(issues);
-  console.log(status);
   return (
     <Page>
       <ListHeader>
@@ -32,7 +32,7 @@ function ListPage() {
         </ListHeaderLeft>
         <Buttons />
       </ListHeader>
-      <PageNation />
+      <PageNation issues={issues} />
     </Page>
   );
 }
