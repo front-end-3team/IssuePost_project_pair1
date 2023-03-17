@@ -5,7 +5,12 @@ import Paging from "./Paging";
 import { pageNumber } from "../../App";
 
 function PageNation() {
+
+  const { postsPerPage, setPostsPerPage, filter, setFilter } =
+    useContext(pageNumber);
+
   const { postsPerPage, setPostsPerPage, filter, setFilter } = useContext(pageNumber);
+
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +43,11 @@ function PageNation() {
   return (
     <>
       <Post posts={currentPosts} loading={loading} />
-      <Paging postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+      <Paging
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
     </>
   );
 }
