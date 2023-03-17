@@ -6,12 +6,15 @@ import { Provider } from "react-redux";
 import { createContext, useState } from "react";
 
 export const pageNumber = createContext();
+
 function App() {
   const [postsPerPage, setPostsPerPage] = useState(10);
+  const [filter, setFilter] = useState("");
+
   return (
     <>
       <Provider store={store}>
-        <pageNumber.Provider value={{ postsPerPage, setPostsPerPage }}>
+        <pageNumber.Provider value={{ postsPerPage, setPostsPerPage, filter, setFilter }}>
           <Header />
           <ListPage />
         </pageNumber.Provider>
