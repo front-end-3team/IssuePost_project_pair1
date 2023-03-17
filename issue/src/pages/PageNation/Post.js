@@ -8,29 +8,37 @@ function Post({ posts, loading }) {
     <>
       {posts.map((post) => (
         <Link to={`/Detail/${post.id}`}>
-          <List
-            style={{
-              textDecoration: "none",
-              color: "black",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <ListTop>
-              <h2>{post.id}</h2>
-              <div>{post.title}</div>
-              <span>댓글수 : {post.comments}</span>
-            </ListTop>
-            <ListCenter>{post.body}</ListCenter>
-            <ListBottom>{post.created_at}</ListBottom>
-          </List>
+          <Div>
+            <List
+              style={{
+                textDecoration: "none",
+                color: "black",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <ListTop>
+                <h2>{post.id}</h2>
+                <div>{post.title}</div>
+                <span>댓글수 : {post.comments}</span>
+              </ListTop>
+              <ListCenter>{post.body}</ListCenter>
+              <ListBottom>{post.created_at}</ListBottom>
+            </List>
+          </Div>
         </Link>
       ))}
     </>
   );
 }
 export default Post;
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const List = styled.div`
   padding: 20px 0;
