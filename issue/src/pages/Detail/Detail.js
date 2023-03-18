@@ -7,6 +7,7 @@ import Header from "../../components/Layout/Header/Header";
 function Detail() {
   const { id } = useParams();
   const [detailPage, setDetailPage] = useState([]);
+
   const fetchPosts = async () => {
     const res = await axios.get(
       `https://api.github.com/repos/angular/angular-cli/issues?per_page=100`
@@ -19,6 +20,10 @@ function Detail() {
   }, []);
 
   const findDetail = detailPage.find((el) => el.id == id);
+
+  console.log(findDetail);
+  console.log(detailPage);
+  console.log(fetchPosts);
 
   return (
     <>
@@ -34,7 +39,7 @@ function Detail() {
         </ListHeader>
         <List>
           <List_header>
-            <div>{findDetail.id}</div>
+            {/* <div>{findDetail.id}</div> */}
             {/* <div>{findDetail.title}</div> */}
           </List_header>
           <Body></Body>
