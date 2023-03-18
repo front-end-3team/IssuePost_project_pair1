@@ -7,10 +7,14 @@ import Header from "../../components/Layout/Header/Header";
 function Detail() {
   const { id } = useParams();
   const [detailPage, setDetailPage] = useState([]);
+  const findDetail = detailPage.find((el) => el.id == id);
+  console.log(findDetail);
+
   const fetchPosts = async () => {
     const res = await axios.get(
       `https://api.github.com/repos/angular/angular-cli/issues?per_page=100`
     );
+    console.log(res);
     setDetailPage(res.data);
   };
 
@@ -18,28 +22,32 @@ function Detail() {
     fetchPosts();
   }, []);
 
-  const findDetail = detailPage.find((el) => el.id == id);
-
   return (
     <>
-      <Header />
-      <Page>
-        <ListHeader>
-          <ListHeaderLeft>
-            <ListHeader_1>Issue Detail</ListHeader_1>
-            <ListHeader_2>
-              angular / <span>angular - cli</span>
-            </ListHeader_2>
-          </ListHeaderLeft>
-        </ListHeader>
-        <List>
-          <List_header>
-            <div>{findDetail.id}</div>
-            {/* <div>{findDetail.title}</div> */}
-          </List_header>
-          <Body></Body>
-        </List>
-      </Page>
+      {findDetail ? (
+        <>
+          <Header />
+          <Page>
+            <ListHeader>
+              <ListHeaderLeft>
+                <ListHeader_1>Issue Detail</ListHeader_1>
+                <ListHeader_2>
+                  angular / <span>angular - cli</span>
+                </ListHeader_2>
+              </ListHeaderLeft>
+            </ListHeader>
+            <List>
+              <List_header>
+                <div>{findDetail.id}</div>
+                <div>{findDetail.title}</div>
+              </List_header>
+              <Body>{findDetail.body}</Body>
+            </List>
+          </Page>
+        </>
+      ) : (
+        "Loading중......"
+      )}
     </>
   );
 }

@@ -4,6 +4,7 @@ function Post({ posts, loading }) {
   if (loading) {
     return <H1>데이터 로딩 중입니다...Loading...</H1>;
   }
+  console.log(posts);
   return (
     <>
       {posts.map((post) => (
