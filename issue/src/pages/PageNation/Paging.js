@@ -6,6 +6,7 @@ function Paging({ postsPerPage, totalPosts, paginate }) {
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
+
   return (
     <nav>
       <Ul>
@@ -16,6 +17,7 @@ function Paging({ postsPerPage, totalPosts, paginate }) {
             </Link>
           </Li>
         ))}
+        <Li>→</Li>
       </Ul>
     </nav>
   );

@@ -8,13 +8,11 @@ function Detail() {
   const { id } = useParams();
   const [detailPage, setDetailPage] = useState([]);
   const findDetail = detailPage.find((el) => el.id == id);
-  console.log(findDetail);
 
   const fetchPosts = async () => {
     const res = await axios.get(
       `https://api.github.com/repos/angular/angular-cli/issues?per_page=100`
     );
-    console.log(res);
     setDetailPage(res.data);
   };
 
@@ -46,7 +44,7 @@ function Detail() {
           </Page>
         </>
       ) : (
-        "Loading중......"
+        <H1>"Loading중......"</H1>
       )}
     </>
   );
@@ -111,4 +109,9 @@ const Body = styled.div`
   border-radius: 5px;
   padding: 20px;
   text-align: center;
+`;
+const H1 = styled.h1`
+  font-size: 50px;
+  text-align: center;
+  margin-top: 20%;
 `;

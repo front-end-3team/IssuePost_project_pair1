@@ -5,12 +5,14 @@ import Paging from "./Paging";
 import { pageNumber } from "../../App";
 
 function PageNation() {
-  const { postsPerPage, setPostsPerPage, filter, setFilter } = useContext(pageNumber);
+  const { postsPerPage, setPostsPerPage, filter, setFilter } =
+    useContext(pageNumber);
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   let arr = [];
+
   for (let i = 0; i < 100; i++) {
     arr.push({});
   }
@@ -28,6 +30,7 @@ function PageNation() {
     };
     fetchPosts();
   }, [filter]);
+  console.log(posts);
 
   //Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -36,10 +39,15 @@ function PageNation() {
 
   //Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <Post posts={currentPosts} loading={loading} />
-      <Paging postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+      <Paging
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
     </>
   );
 }
